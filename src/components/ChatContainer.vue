@@ -2,7 +2,7 @@
 </script>
 <template>
     <div class="_chat_wrapper">
-        <div class="_chat_container">
+        <div class="_chat_container ">
 
         </div>
     </div>
@@ -25,6 +25,18 @@
     max-width: 500px;
     height: 100vh;
     max-height: 600px;
-    border: 1px solid red
+    border-radius: 8px;
+    background-color: white;
+}
+
+/* Design responsivo */
+@media screen and (max-width: 600px) {
+    ._chat_container {
+        max-width: none;
+        max-height: none;
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+    }
 }
 </style>
