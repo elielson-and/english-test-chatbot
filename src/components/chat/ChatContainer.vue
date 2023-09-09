@@ -30,11 +30,14 @@ import ChatFooter from './ChatFooter.vue';
 
 ._chat_container {
     width: 100%;
-    max-width: 500px;
+    max-width: 420px;
     height: 100vh;
     max-height: 600px;
     border-radius: 10px;
-    background-color: white;
+    background-image: url('../../images/chat_background.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 ._chat_header {
@@ -48,7 +51,7 @@ import ChatFooter from './ChatFooter.vue';
     width: 100%;
     height: 80%;
     padding: 0 4px;
-    border: 1px solid red
+    /* border: 1px solid red */
 }
 
 ._chat_footer {
