@@ -1,16 +1,27 @@
 <script setup>
 import ChatHeader from './ChatHeader.vue';
 import ChatFooter from './ChatFooter.vue';
-
+// Lottie
+import { Vue3Lottie } from 'vue3-lottie';
+import ChatAnimation from '../animations/chat.json';
 </script>
 <template>
     <div class="_chat_wrapper">
         <div class="_chat_container flex flex-col justify-between">
             <ChatHeader class="_chat_header" />
             <div class="_chat_content">
-                test content
-            </div>
+                <div class="w-full h-full flex justify-center items-center">
+                    <div
+                        class="w-2/3 py-3 backdrop-blur-sm bg-white/10 rounded-md text-center flex flex-col justify-center items-center ">
+                        <Vue3Lottie :animationData="ChatAnimation" :width="110" :loop="true" />
+                        <h1 class="font-bold">Tudo certo! 😎</h1>
+                        <small class="text-gray-300">Vamos iniciar o seu teste de inglês. <br> É só clicar em iniciar aqui
+                            embaixo. 👇</small>
+                    </div>
+                </div>
+                <!-- renderização das mensagens -->
 
+            </div>
             <ChatFooter class="_chat_footer" />
         </div>
     </div>
@@ -31,8 +42,8 @@ import ChatFooter from './ChatFooter.vue';
 ._chat_container {
     width: 100%;
     max-width: 420px;
-    height: 100vh;
-    max-height: 600px;
+    height: 90vh;
+    max-height: 700px;
     border-radius: 10px;
     background-image: url('../../images/chat_background.jpg');
     background-position: center;
