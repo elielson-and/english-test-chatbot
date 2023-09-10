@@ -9,6 +9,9 @@ import TuringBubble from './TuringBubble.vue';
 import { Vue3Lottie } from 'vue3-lottie';
 import ChatAnimation from '../animations/chat.json';
 
+// Pinia
+import { useChatTimelineStore } from '../../stores/chatTimeline';
+const ChatTimeline = useChatTimelineStore();
 //Refs
 
 
@@ -39,6 +42,7 @@ import ChatAnimation from '../animations/chat.json';
 
 
             </div>
+            <button @click="ChatTimeline.start()">teste</button>
             <ChatFooter class="_chat_footer" />
         </div>
     </div>
