@@ -3,6 +3,8 @@ import { ref } from 'vue';
 
 import ChatHeader from './ChatHeader.vue';
 import ChatFooter from './ChatFooter.vue';
+import UserBubble from './UserBubble.vue';
+import TuringBubble from './TuringBubble.vue';
 // Lottie
 import { Vue3Lottie } from 'vue3-lottie';
 import ChatAnimation from '../animations/chat.json';
@@ -30,26 +32,11 @@ import ChatAnimation from '../animations/chat.json';
                 <!-- renderização das mensagens -->
 
                 <!-- Mensagem do usuario -->
-                <div class="flex items-center flex-row-reverse my-4 ">
-                    <div class=" bg-indigo-600  p-2 rounded-lg mb-2 relative">
-                        <div>/iniciar_conversa </div>
-                        <div class="absolute right-0 top-1/2 transform translate-x-1/2 rotate-45 w-2 h-2 bg-indigo-600">
-                        </div>
-                    </div>
-                </div>
+                <UserBubble />
 
                 <!-- Mensagem turing -->
-                <div class="flex items-center my-4">
-                    <div
-                        class="bg-gradient-to-tr rounded-md from-indigo-900 via-transparent to-transparent backdrop-blur-lg bg-white/10 text-white p-2 pb-4 mb-2 relative z-10">
-                        <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. ✅</div>
-                        <div class="absolute left-0 bottom-2 transform -translate-x-1/2 rotate-45 w-2 h-2 bg-indigo-900 ">
-                        </div>
-                        <div class="absolute right-2 bottom-1 text-xxs text-gray-400">
-                            Hoje às 10:35
-                        </div>
-                    </div>
-                </div>
+                <TuringBubble />
+
 
             </div>
             <ChatFooter class="_chat_footer" />
@@ -92,6 +79,7 @@ import ChatAnimation from '../animations/chat.json';
     width: 100%;
     height: 80%;
     padding: 0 10px;
+    overflow-y: auto;
     /* border: 1px solid red */
 }
 
@@ -102,6 +90,28 @@ import ChatAnimation from '../animations/chat.json';
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
 }
+
+
+/* Scrollbar */
+._chat_content::-webkit-scrollbar {
+    width: 5px;
+}
+
+._chat_content::-webkit-scrollbar-track {
+    background: transparent !important;
+}
+
+._chat_content::-webkit-scrollbar-thumb {
+    background: #656565;
+    border-radius: 5px;
+}
+
+._chat_content::-webkit-scrollbar-thumb:hover {
+    background: #555454;
+    cursor: pointer;
+}
+
+
 
 /* Design responsivo */
 @media screen and (max-width: 600px) {
