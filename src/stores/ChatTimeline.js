@@ -10,7 +10,7 @@ export const useChatTimelineStore = defineStore("chatTimeline", {
     actions: {
         start() {
             const current_hour = new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
-            this.pushMessage("bot", "/iniciar", current_hour);
+            this.pushMessage("user", "Olá, vamos iniciar seu teste!", current_hour);
         },
 
         pushMessage(entity, message, current_hour) {

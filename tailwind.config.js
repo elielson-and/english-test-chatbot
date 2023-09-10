@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+import tailwindAnimated from "tailwindcss-animated";
 export default {
   content: [
     "./index.html",
@@ -10,6 +11,8 @@ export default {
       xxs: '0.55rem'
     }
   },
-  plugins: [],
+  plugins: [
+    tailwindAnimated
+  ],
 }
 
