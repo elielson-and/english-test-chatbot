@@ -22,9 +22,9 @@ const ChatTimeline = useChatTimelineStore();
             <ChatHeader class="_chat_header" />
             <div class="_chat_content">
                 <!-- Welcome message -->
-                <div v-if="false" class="w-full h-full flex justify-center items-center">
+                <div v-if="ChatTimeline.messages.length === 0" class="w-full h-full flex justify-center items-center ">
                     <div
-                        class="w-2/3 py-3 backdrop-blur-sm bg-white/10 rounded-md text-center flex flex-col justify-center items-center ">
+                        class="w-2/3 py-3 backdrop-blur-sm bg-white/10 rounded-md text-center flex flex-col justify-center items-center">
                         <Vue3Lottie :animationData="ChatAnimation" :width="110" :loop="true" />
                         <h1 class="font-bold">Tudo certo! 😎</h1>
                         <small class="text-gray-300">Vamos iniciar o seu teste de inglês. <br> É só clicar em iniciar aqui
