@@ -33,13 +33,13 @@ const ChatTimeline = useChatTimelineStore();
                 </div>
 
                 <!-- renderização das mensagens -->
+                <div v-for="(message, index) in ChatTimeline.messages" :key="index">
+                    <!-- Mensagem do usuário -->
+                    <UserBubble v-if="message.entity === 'user'" :message="message.message" />
 
-                <!-- Mensagem do usuario -->
-                <UserBubble />
-
-                <!-- Mensagem turing -->
-                <TuringBubble />
-
+                    <!-- Mensagem turing -->
+                    <TuringBubble v-else-if="message.entity === 'bot'" :message="message.message" />
+                </div>
 
             </div>
             <button @click="ChatTimeline.start()">teste</button>

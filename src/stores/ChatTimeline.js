@@ -9,8 +9,7 @@ export const useChatTimelineStore = defineStore("chatTimeline", {
     },
     actions: {
         start() {
-            // this.pushMessage("user", "/iniciar");
-            console.log("clicou")
+            this.pushMessage("user", "/iniciar");
         },
 
         pushMessage(entity, message) {
