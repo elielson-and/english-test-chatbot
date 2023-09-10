@@ -1,4 +1,6 @@
 <script setup>
+import ClockIcon from '../icons/ClockIcon.vue'
+
 defineProps({
     message: {
         type: Object
@@ -11,8 +13,8 @@ defineProps({
             <div>{{ message.message }}</div>
             <div class="absolute right-0 top-1/2 transform translate-x-1/2 rotate-45 w-2 h-2 bg-indigo-600">
             </div>
-            <div class="absolute right-2 bottom-1 text-xxs text-gray-200">
-                Hoje às {{ message.current_hour }}
+            <div class="absolute right-2 bottom-1 text-xxs text-gray-300 flex items-center ">
+                <ClockIcon class="w-[10px] text-white " /> {{ message.current_hour }}
             </div>
         </div>
     </div>
