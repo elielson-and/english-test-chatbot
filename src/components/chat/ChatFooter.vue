@@ -1,11 +1,17 @@
-<script setup></script>
+<script setup>
+defineProps({
+    chatStore: {
+        type: Object
+    }
+})
+</script>
 <template>
-    <header class="w-full bg-slate-600">
-        <!-- <div class="w-full h-full p-4 ">
-            <button class="bg-blue-500 rounded-md text-white w-full h-8 px-3">Iniciar</button>
-        </div> -->
+    <footer class="w-full bg-slate-600">
+        <div v-if="chatStore.messages.length === 0" class="w-full h-full p-4 ">
+            <button @click="chatStore.start()" class="bg-blue-500 rounded-md text-white w-full h-8 px-3">Iniciar</button>
+        </div>
 
-        <div class="w-full h-full p-2 flex items-center ">
+        <div v-else class="w-full h-full p-2 flex items-center ">
             <form class="w-full flex justify-around">
                 <input type="text" class="w-3/4 h-10 p-2 text-white rounded-md bg-slate-500 focus:outline-none"
                     placeholder="Digite aqui...">
@@ -15,7 +21,7 @@
             </form>
         </div>
 
-    </header>
+    </footer>
 </template>
 
 <style scoped>

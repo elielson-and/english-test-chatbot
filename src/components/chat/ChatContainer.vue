@@ -11,7 +11,7 @@ import ChatAnimation from '../animations/chat.json';
 
 // Pinia
 import { useChatTimelineStore } from '../../stores/chatTimeline';
-const ChatTimeline = useChatTimelineStore();
+const chatStore = useChatTimelineStore();
 //Refs
 
 
@@ -22,7 +22,7 @@ const ChatTimeline = useChatTimelineStore();
             <ChatHeader class="_chat_header" />
             <div class="_chat_content">
                 <!-- Welcome message -->
-                <div v-if="ChatTimeline.messages.length === 0" class="w-full h-full flex justify-center items-center ">
+                <div v-if="chatStore.messages.length === 0" class="w-full h-full flex justify-center items-center ">
                     <div
                         class="w-2/3 py-3 backdrop-blur-sm bg-white/10 rounded-md text-center flex flex-col justify-center items-center">
                         <Vue3Lottie :animationData="ChatAnimation" :width="110" :loop="true" />
@@ -33,7 +33,7 @@ const ChatTimeline = useChatTimelineStore();
                 </div>
 
                 <!-- renderização das mensagens -->
-                <div v-for="(message, index) in ChatTimeline.messages" :key="index">
+                <div v-for="(message, index) in chatStore.messages" :key="index">
                     <!-- Mensagem do usuário -->
                     <UserBubble v-if="message.entity === 'user'" :message="message" />
 
@@ -42,8 +42,7 @@ const ChatTimeline = useChatTimelineStore();
                 </div>
 
             </div>
-            <button @click="ChatTimeline.start()">teste</button>
-            <ChatFooter class="_chat_footer" />
+            <ChatFooter class="_chat_footer" :chatStore="chatStore" />
         </div>
     </div>
 </template>
