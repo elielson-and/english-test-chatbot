@@ -4,6 +4,12 @@ import MenuIcon from '../icons/MenuIcon.vue'
 
 // refs
 const isTyping = ref(false);
+const isMenuOpen = ref(false);
+
+const toggleMenu = () => {
+    isMenuOpen.value = !isMenuOpen.value;
+}
+
 
 </script>
 <template>
@@ -23,8 +29,15 @@ const isTyping = ref(false);
                 </small>
             </div>
         </div>
-        <div class="flex items-center">
-            <MenuIcon class="w-11 h-11 p-2 text-white  hover:bg-slate-700 hover:cursor-pointer rounded-full " />
+        <!-- botao menu -->
+        <div class="relative flex items-center">
+            <MenuIcon class="w-11 h-11 p-2 text-white hover:bg-slate-700 hover:cursor-pointer rounded-full"
+                @click="toggleMenu" />
+
+            <!-- Mini modal do menu -->
+            <div v-if="isMenuOpen" class="absolute bg-slate-800 w-44 right-0 top-9 rounded-md mt-2 p-2">
+                ajjkashd
+            </div>
         </div>
     </header>
 </template>
