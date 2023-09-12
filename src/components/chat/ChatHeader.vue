@@ -2,13 +2,17 @@
 import { ref } from 'vue'
 import MenuIcon from '../icons/MenuIcon.vue'
 
-// refs
-const isTyping = ref(false);
 const isMenuOpen = ref(false);
 
 const toggleMenu = () => {
     isMenuOpen.value = !isMenuOpen.value;
 }
+
+defineProps({
+    isTuringTyping: {
+        type: Boolean
+    }
+})
 
 
 </script>
@@ -22,7 +26,7 @@ const toggleMenu = () => {
             <div class="text-white ml-2">
                 <p class="-mb-1">Turing - Assistente</p>
                 <small>
-                    <span v-if="isTyping">digitando...</span>
+                    <span v-if="isTuringTyping">digitando...</span>
                     <span v-else class="m-0 p-0 text-center flex items-center">
                         <div class="w-2 h-2 rounded-full bg-green-300 mr-1"></div> online
                     </span>

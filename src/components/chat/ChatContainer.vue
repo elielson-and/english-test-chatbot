@@ -13,6 +13,9 @@ import ChatAnimation from '../animations/chat.json';
 import { useChatTimelineStore } from '../../stores/chatTimeline';
 const chatStore = useChatTimelineStore();
 
+//refs
+const isTuringTyping = chatStore.isTuringTyping;
+
 fetch('/messagePayload.json')
     .then(response => response.json())
     .then(data => {
@@ -28,7 +31,7 @@ fetch('/messagePayload.json')
 <template>
     <div class="_chat_wrapper">
         <div class="_chat_container flex flex-col justify-between">
-            <ChatHeader class="_chat_header" />
+            <ChatHeader class="_chat_header" :isTuringTyping="chatStore.isTuringTyping" />
             <div class="_chat_content">
                 <!-- Welcome message -->
                 <div v-if="chatStore.messages.length === 0" class="w-full h-full flex justify-center items-center ">
