@@ -3,19 +3,36 @@ import { defineStore } from "pinia";
 export const useChatTimelineStore = defineStore("chatTimeline", {
     state: () => ({
         messages: [],
+        messagePayload: [],
     }),
     getters: {
         // errors: (state) => state.authErrors,
     },
     actions: {
-        start() {
-            const current_hour = new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
-            this.pushMessage("user", "/iniciar", current_hour);
+        // Startup
+        setPayload(data) {
+            this.messagePayload = data;
         },
 
-        pushMessage(entity, message, current_hour) {
-            this.messages.push({ entity, message, current_hour })
-        }
+        start() {
+            this.pushMessage("user", "/iniciar");
+        },
+
+        // Static methods
+        pushMessage(entity, message) {
+            const current_hour = new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+            this.messages.push({ entity, message, current_hour });
+            if (entity == 'user') {
+                this.TuringResponse(message)
+            }
+        },
+
+
+        // General methods
+        TuringResponse(lastUserMessage) {
+            console.log("Hora da resposta")
+        },
+
 
     },
 });

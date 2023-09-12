@@ -1,0 +1,44 @@
+{
+    "guest_presentation": {
+        "message": [
+            "Olá!👋 Vamos começar o seu teste de inglês! Estou empolgado para te ajudar a avaliar sua proficiência. 😊",
+            "E aí! 👋 Bem-vindo ao teste de inglês comigo, o Turing. Prepare-se para desafios emocionantes e uma análise completa no final! 🚀",
+            "Opa, eaí! 🌟 É hora de começar o teste de inglês comigo, o Turing. Vamos lá!",
+            "Hey! 🙌 Estou animado para iniciar o seu teste de inglês. Prepare-se para algumas perguntas desafiadoras e uma análise detalhada.",
+            "Olá! 🌟 Vamos começar o teste de inglês. Estou aqui para tornar a sua avaliação de proficiência uma experiência incrível!",
+            "Oi, tudo bem? 👋 Vou te guiar através do seu teste de inglês. Estou aqui para tornar isso divertido e educativo!",
+            "Olá! 🚀 Bem-vindo ao teste de inglês comigo, o Turing. Vamos começar e descobrir seu nível de inglês!",
+            "E aí, como vai? 🙋‍♂️ Estou aqui para te ajudar a avaliar sua proficiência em inglês. Vamos começar!",
+            "Hey! 🌟 Prepare-se para o teste de inglês. Juntos, vamos analisar sua habilidade no idioma!",
+            "Oi, tudo bem? 👋 Estou aqui como seu guia para o teste de inglês. Vamos começar e ver o quão bem você se sai!"
+        ]
+    },
+    "progress_expressions": {
+        "affirmative": [
+            "sim",
+            "yes",
+            "ok",
+            "blz",
+            "beleza",
+            "claro",
+            "tabom",
+            "vamos",
+            "certo",
+            "isso",
+            "positivo",
+            "afirmativo",
+            "tudo bem"
+        ],
+        "negative": [
+            "não",
+            "nao",
+            "no",
+            "nop",
+            "nunca",
+            "jamais",
+            "negativo",
+            "errado",
+            "impossível"
+        ]
+    }
+}

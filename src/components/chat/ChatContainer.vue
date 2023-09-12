@@ -12,7 +12,16 @@ import ChatAnimation from '../animations/chat.json';
 // Pinia
 import { useChatTimelineStore } from '../../stores/chatTimeline';
 const chatStore = useChatTimelineStore();
-//Refs
+
+fetch('/messagePayload.json')
+    .then(response => response.json())
+    .then(data => {
+        // Armazene os dados na store
+        chatStore.setPayload(data);
+    })
+    .catch(error => {
+        console.error('Erro ao carregar o arquivo JSON:', error);
+    });
 
 
 </script>
@@ -42,6 +51,7 @@ const chatStore = useChatTimelineStore();
                 </div>
 
             </div>
+            <!-- <p v-html="chatStore.messagePayload.guest_presentation.message[0]"></p> -->
             <ChatFooter class="_chat_footer" :chatStore="chatStore" />
         </div>
     </div>
