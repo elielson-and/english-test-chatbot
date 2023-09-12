@@ -12,6 +12,9 @@ const sendMessage = (message) => {
     }
 
 }
+
+// Emmits
+defineEmits(['scroll-content']);
 </script>
 
 <template>
@@ -25,7 +28,8 @@ const sendMessage = (message) => {
                 <input type="text" v-model="textInput"
                     class="w-3/4 h-10 p-2 text-white rounded-md bg-slate-500 focus:outline-none"
                     placeholder="Digite aqui...">
-                <button type="submit" class="w-1/5 h-10 bg-blue-700 rounded-md text-white">
+                <button type="submit" @click="this.$emit('scroll-content')"
+                    class="w-1/5 h-10 bg-blue-700 rounded-md text-white">
                     Enviar
                 </button>
             </form>

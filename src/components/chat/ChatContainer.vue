@@ -26,13 +26,18 @@ fetch('/messagePayload.json')
         console.error('Erro ao carregar o arquivo JSON:', error);
     });
 
-
+function scrollContent() {
+    setTimeout(() => {
+        var chatContent = document.getElementById('chatContent');
+        chatContent.scrollTop = chatContent.scrollHeight;
+    }, 1300);
+}
 </script>
 <template>
     <div class="_chat_wrapper">
         <div class="_chat_container flex flex-col justify-between">
             <ChatHeader class="_chat_header" :isTuringTyping="chatStore.isTuringTyping" />
-            <div class="_chat_content">
+            <div class="_chat_content" id="chatContent">
                 <!-- Welcome message -->
                 <div v-if="chatStore.messages.length === 0" class="w-full h-full flex justify-center items-center ">
                     <div
@@ -55,7 +60,7 @@ fetch('/messagePayload.json')
 
             </div>
             <!-- <p v-html="chatStore.messagePayload.guest_presentation.message[0]"></p> -->
-            <ChatFooter class="_chat_footer" />
+            <ChatFooter class="_chat_footer" @scroll-content="scrollContent()" />
         </div>
     </div>
 </template>
