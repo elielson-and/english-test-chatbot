@@ -9,7 +9,9 @@ export const useChatTimelineStore = defineStore("chatTimeline", {
         lastUserMessage: '',
         currentQuestion: [],
         usedQuestions: [],
-        awaitingUserResponse: false
+        awaitingUserResponse: false,
+        currentTry: 0,
+        correctAnswers: 0
     }),
     getters: {
         // errors: (state) => state.authErrors,
@@ -63,12 +65,22 @@ export const useChatTimelineStore = defineStore("chatTimeline", {
             if (this.currentStartStep == 2) { //step 3 = quiz
                 if (this.awaitingUserResponse) {
                     var isCorrect = this.verifyUserAnswer(this.lastUserMessage);
-                    if (isCorrect) {
-                        this.pushMessage("bot", "Você acertou!");
+                    if (this.currentTry <= 1) {
+                        if (isCorrect) {
+                            this.pushMessage("bot", this.getSuccessMessage());
+                            this.correctAnswers++;
+                            this.awaitingUserResponse = false;
+                            this.handleQuiz()
+                        } else {
+                            this.pushMessage("bot", this.getErrorMessage());
+                            this.currentTry++;
+                            this.awaitingUserResponse = true;
+                        }
                     } else {
-                        this.pushMessage("bot", "Ahh vc errou!");
+                        this.awaitingUserResponse = false;
+                        this.handleQuiz();
                     }
-                    this.awaitingUserResponse = false;
+
                 } else {
                     this.handleQuiz();
                 }
@@ -77,19 +89,25 @@ export const useChatTimelineStore = defineStore("chatTimeline", {
 
 
         handleQuiz() {
-            const questions = this.messagePayload.questions;
-            const randomIndex = Math.floor(Math.random() * questions.length);
-            this.currentQuestion = questions[randomIndex];
-            //
-            const current_question = {
-                id: this.currentQuestion.id,
-                question: this.currentQuestion.question,
-                answer: this.currentQuestion.answer
+            if (this.usedQuestions.length >= 5) {
+                this.getResults();
+            } else {
+                const questions = this.messagePayload.questions;
+                const randomIndex = Math.floor(Math.random() * questions.length);
+                this.currentQuestion = questions[randomIndex];
+                //
+                const current_question = {
+                    id: this.currentQuestion.id,
+                    question: this.currentQuestion.question,
+                    answer: this.currentQuestion.answer
+                }
+
+                this.usedQuestions.push(current_question);
+                this.pushMessage("bot", current_question.question);
+                this.awaitingUserResponse = true;
             }
 
-            this.usedQuestions.push(current_question);
-            this.pushMessage("bot", current_question.question);
-            this.awaitingUserResponse = true;
+
         },
 
         verifyUserAnswer(message) {
@@ -107,6 +125,21 @@ export const useChatTimelineStore = defineStore("chatTimeline", {
         isConfirmationMessage(message) {
             const objMessages = this.messagePayload.progress_expressions.affirmative;
             return objMessages.includes(message);
+        },
+
+        getSuccessMessage() {
+            const messages = this.messagePayload.feedback_messages.success;
+            const randomIndex = Math.floor(Math.random() * messages.length);
+            return messages[randomIndex];
+        },
+        getErrorMessage() {
+            const messages = this.messagePayload.feedback_messages.error;
+            const randomIndex = Math.floor(Math.random() * messages.length);
+            return messages[randomIndex];
+        },
+        getResults() {
+            var proeficiency = (this.correctAnswers / this.usedQuestions.length) * 100;
+            this.pushMessage('bot', "Ok, agora vamos analisar seus resultados!! <br> Proeficiencia: <b>" + proeficiency + "%</b><br>Total de acertos: " + this.correctAnswers)
         }
 
 

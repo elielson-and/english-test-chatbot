@@ -93,5 +93,21 @@
             "question": "Qual é o dia da semana que vem depois de terça-feira?",
             "answer": "Wednesday"
         }
-    ]
+    ],
+    "feedback_messages": {
+        "success": [
+            "Huhull, é isso aí!",
+            "Mandou bem!!",
+            "Acertou!!!",
+            "Na lata, é isso ai",
+            "Boa, acertou!"
+        ],
+        "error": [
+            "Iih, nao foi dessa vez, tenta de novo",
+            "Eita, não parece estar certo, vou te dar mais uma chance, me fala a resposta",
+            "Errado.. mais uma chance, fala ai a resposta",
+            "Errouuu, vou te dar outra chance, fala a resposta novamente",
+            "Errado huehue, tenta novamente.. qual a resposta?"
+        ]
+    }
 }
