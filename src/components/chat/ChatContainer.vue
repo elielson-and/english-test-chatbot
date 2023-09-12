@@ -55,7 +55,7 @@ fetch('/messagePayload.json')
 
             </div>
             <!-- <p v-html="chatStore.messagePayload.guest_presentation.message[0]"></p> -->
-            <ChatFooter class="_chat_footer" :chatStore="chatStore" />
+            <ChatFooter class="_chat_footer" />
         </div>
     </div>
 </template>
