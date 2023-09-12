@@ -26,17 +26,29 @@ export const useChatTimelineStore = defineStore("chatTimeline", {
             if (entity == 'user') {
                 this.isTuringTyping = true
                 setTimeout(() => {
+                    this.TuringResponse(message)
                     this.isTuringTyping = false
-                }, 3000);
-                this.TuringResponse(message)
+                }, 1000);
+
             }
         },
 
 
         // General methods
         TuringResponse(lastUserMessage) {
-            console.log("Hora da resposta")
+            var isFirstMessage = lastUserMessage == '/iniciar'
+            if (isFirstMessage) {
+                this.pushMessage('bot', this.getRandomMsg("guest_presentation"))
+            }
         },
+
+
+        //
+        getRandomMsg(context) {
+            const messages = this.messagePayload[context].message;
+            const randomIndex = Math.floor(Math.random() * messages.length);
+            return messages[randomIndex];
+        }
 
 
     },
