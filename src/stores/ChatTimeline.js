@@ -6,7 +6,10 @@ export const useChatTimelineStore = defineStore("chatTimeline", {
         messagePayload: [],
         isTuringTyping: false,
         currentStartStep: 0,
-        lastUserMessage: ''
+        lastUserMessage: '',
+        currentQuestion: [],
+        usedQuestions: [],
+        awaitingUserResponse: false
     }),
     getters: {
         // errors: (state) => state.authErrors,
@@ -19,7 +22,6 @@ export const useChatTimelineStore = defineStore("chatTimeline", {
 
         start() {
             this.pushMessage("user", "/iniciar");
-            console.log('teste')
         },
 
         // Static methods
@@ -29,10 +31,9 @@ export const useChatTimelineStore = defineStore("chatTimeline", {
 
             if (entity == 'user') {
                 this.lastUserMessage = message;
-                console.log("Hora da resposta turing")
                 this.isTuringTyping = true
                 setTimeout(() => {
-                    this.turingResponse(message)
+                    this.turingResponse()
                     this.isTuringTyping = false
                 }, 1000);
 
@@ -42,10 +43,6 @@ export const useChatTimelineStore = defineStore("chatTimeline", {
 
         // General methods
 
-        handleStartMessages() {
-
-        },
-
         turingResponse() {
             var isFirstMessage = this.lastUserMessage == '/iniciar';
 
@@ -54,16 +51,49 @@ export const useChatTimelineStore = defineStore("chatTimeline", {
                 this.currentStartStep = 1;
             }
 
-            if (this.isConfirmationMessage(this.lastUserMessage)) {
+            if (this.currentStartStep == 1 && this.isConfirmationMessage(this.lastUserMessage)) {
                 this.pushMessage("bot", "Certo vamos lá!");
-                console.log("DEpois de responder")
+                setTimeout(() => {
+                    this.currentStartStep = 2;
+                    this.handleQuiz();
+                }, 1000);
             }
-            //parei aqui tava fazendo a confirmacao
+
+
+            if (this.currentStartStep == 2) { //step 3 = quiz
+                if (this.awaitingUserResponse) {
+                    var isCorrect = this.verifyUserAnswer(this.lastUserMessage);
+                    if (isCorrect) {
+                        this.pushMessage("bot", "Você acertou!");
+                    } else {
+                        this.pushMessage("bot", "Ahh vc errou!");
+                    }
+                    this.awaitingUserResponse = false;
+                } else {
+                    this.handleQuiz();
+                }
+            }
         },
 
 
-        handleConversation() {
+        handleQuiz() {
+            const questions = this.messagePayload.questions;
+            const randomIndex = Math.floor(Math.random() * questions.length);
+            this.currentQuestion = questions[randomIndex];
+            //
+            const current_question = {
+                id: this.currentQuestion.id,
+                question: this.currentQuestion.question,
+                answer: this.currentQuestion.answer
+            }
 
+            this.usedQuestions.push(current_question);
+            this.pushMessage("bot", current_question.question);
+            this.awaitingUserResponse = true;
+        },
+
+        verifyUserAnswer(message) {
+            return message === this.currentQuestion.answer;
         },
 
 
