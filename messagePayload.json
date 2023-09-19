@@ -46,52 +46,84 @@
         {
             "id": 1,
             "question": "Como se diz cachorro em inglês?",
-            "answer": "dog"
+            "answer": [
+                "dog"
+            ]
         },
         {
             "id": 2,
-            "question": "Qual é a cor do céu em um dia claro?",
-            "answer": "blue"
+            "question": "<b>Em inglês<b>, qual é a cor do céu em um dia claro?",
+            "answer": [
+                "blue"
+            ]
         },
         {
             "id": 3,
             "question": "O que significa 'hello' em português?",
-            "answer": "olá"
+            "answer": [
+                "olá",
+                "ola",
+                "oi"
+            ]
         },
         {
             "id": 4,
-            "question": "Quantos dedos você tem em uma mão?",
-            "answer": "five"
+            "question": "traduza a seguinte frase para português: <br/><b>'I like to play soccer'<b>",
+            "answer": [
+                "eu gosto de futebol",
+                "gosto de futebol"
+            ]
         },
         {
             "id": 5,
-            "question": "O que você bebe para matar a sede?",
-            "answer": "water"
+            "question": "Complete a frase: <br/><b>'This is my friend David. He's a soccer player! He likes to ____ soccer everyday!'<b>",
+            "answer": [
+                "play"
+            ]
         },
         {
             "id": 6,
             "question": "Como se diz 'gato' em inglês?",
-            "answer": "cat"
+            "answer": [
+                "cat"
+            ]
         },
         {
             "id": 7,
             "question": "Como se diz 'obrigado' em inglês?",
-            "answer": "thank you"
+            "answer": [
+                "thank you",
+                "thanks",
+                "thankyou"
+            ]
         },
         {
             "id": 8,
             "question": "Qual é o oposto de 'hot' em inglês?",
-            "answer": "cold"
+            "answer": [
+                "cold"
+            ]
         },
         {
             "id": 9,
             "question": "Qual e o nome do primeiro dia da semana em ingles?",
-            "answer": "monday"
+            "answer": [
+                "monday"
+            ]
         },
         {
             "id": 10,
             "question": "Qual é o dia da semana que vem depois de terça-feira?",
-            "answer": "Wednesday"
+            "answer": [
+                "wednesday"
+            ]
+        },
+        {
+            "id": 11,
+            "question": "Complete a frase: <br/><b>'Emma goes to school, ___ loves studying with her friend Melyssa.'<b>",
+            "answer": [
+                "she"
+            ]
         }
     ],
     "feedback_messages": {

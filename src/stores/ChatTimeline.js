@@ -95,16 +95,9 @@ export const useChatTimelineStore = defineStore("chatTimeline", {
                 this.getResults();
                 this.isFinished = true;
             } else {
-                const questions = this.messagePayload.questions;
-                const randomIndex = Math.floor(Math.random() * questions.length);
-                let isDiff = randomIndex == this.usedQuestions.id;
-                while (isDiff) {
-                    if (randomIndex != this.usedQuestions.id) {
-                        isDiff = true
-                    } else {
-                        isDiff = false
-                    }
-                }
+                var questions = this.messagePayload.questions;
+                var randomIndex = Math.floor(Math.random() * questions.length);
+
 
 
                 this.currentQuestion = questions[randomIndex];
@@ -124,7 +117,15 @@ export const useChatTimelineStore = defineStore("chatTimeline", {
         },
 
         verifyUserAnswer(message) {
-            return message === this.currentQuestion.answer;
+            var isCorrect = false;
+            for (let index = 0; index < this.currentQuestion.answer.length; index++) {
+                if (message.toLowerCase() == this.currentQuestion.answer[index].toLowerCase()) {
+                    isCorrect = true
+                }
+
+            }
+
+            return isCorrect;
         },
 
 
