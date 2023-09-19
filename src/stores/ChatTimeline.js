@@ -11,7 +11,8 @@ export const useChatTimelineStore = defineStore("chatTimeline", {
         usedQuestions: [],
         awaitingUserResponse: false,
         currentTry: 0,
-        correctAnswers: 0
+        correctAnswers: 0,
+        isFinished: false
     }),
     getters: {
         // errors: (state) => state.authErrors,
@@ -21,6 +22,7 @@ export const useChatTimelineStore = defineStore("chatTimeline", {
         setPayload(data) {
             this.messagePayload = data;
         },
+
 
         start() {
             this.pushMessage("user", "/iniciar");
@@ -89,8 +91,9 @@ export const useChatTimelineStore = defineStore("chatTimeline", {
 
 
         handleQuiz() {
-            if (this.usedQuestions.length >= 5) {
+            if (this.usedQuestions.length >= 2) {
                 this.getResults();
+                this.isFinished = true;
             } else {
                 const questions = this.messagePayload.questions;
                 const randomIndex = Math.floor(Math.random() * questions.length);
