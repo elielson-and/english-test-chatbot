@@ -91,12 +91,22 @@ export const useChatTimelineStore = defineStore("chatTimeline", {
 
 
         handleQuiz() {
-            if (this.usedQuestions.length >= 2) {
+            if (this.usedQuestions.length >= 5) {
                 this.getResults();
                 this.isFinished = true;
             } else {
                 const questions = this.messagePayload.questions;
                 const randomIndex = Math.floor(Math.random() * questions.length);
+                let isDiff = randomIndex == this.usedQuestions.id;
+                while (isDiff) {
+                    if (randomIndex != this.usedQuestions.id) {
+                        isDiff = true
+                    } else {
+                        isDiff = false
+                    }
+                }
+
+
                 this.currentQuestion = questions[randomIndex];
                 //
                 const current_question = {
