@@ -89,32 +89,39 @@ export const useChatTimelineStore = defineStore("chatTimeline", {
             }
         },
 
-
         handleQuiz() {
-            if (this.usedQuestions.length >= 5) {
+            if (this.usedQuestions.length >= 7) {
                 this.getResults();
                 this.isFinished = true;
             } else {
                 var questions = this.messagePayload.questions;
-                var randomIndex = Math.floor(Math.random() * questions.length);
 
+                var unusedQuestions = questions.filter(question => {
+                    return !this.usedQuestions.some(usedQuestion => usedQuestion.id === question.id);
+                });
 
+                if (unusedQuestions.length === 0) {
+                    this.getResults();
+                    this.isFinished = true;
+                } else {
+                    var randomIndex = Math.floor(Math.random() * unusedQuestions.length);
+                    this.currentQuestion = unusedQuestions[randomIndex];
 
-                this.currentQuestion = questions[randomIndex];
-                //
-                const current_question = {
-                    id: this.currentQuestion.id,
-                    question: this.currentQuestion.question,
-                    answer: this.currentQuestion.answer
+                    this.usedQuestions.push(this.currentQuestion);
+
+                    const current_question = {
+                        id: this.currentQuestion.id,
+                        question: this.currentQuestion.question,
+                        answer: this.currentQuestion.answer
+                    };
+
+                    this.pushMessage("bot", current_question.question);
+                    this.awaitingUserResponse = true;
                 }
-
-                this.usedQuestions.push(current_question);
-                this.pushMessage("bot", current_question.question);
-                this.awaitingUserResponse = true;
             }
-
-
         },
+
+
 
         verifyUserAnswer(message) {
             var isCorrect = false;
