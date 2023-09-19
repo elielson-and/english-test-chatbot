@@ -39,8 +39,8 @@ defineProps({
                 @click="toggleMenu" />
 
             <!-- Mini modal do menu -->
-            <div v-if="isMenuOpen" class="absolute bg-slate-800 w-44 right-0 top-9 rounded-md mt-2 p-2">
-                ajjkashd
+            <div v-if="isMenuOpen" class="absolute bg-slate-800 w-44 right-0 top-9 rounded-md mt-2 p-2 text-gray-300">
+                @elielson_and
             </div>
         </div>
     </header>

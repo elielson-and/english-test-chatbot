@@ -69,7 +69,7 @@ function scrollContent() {
 ._chat_wrapper {
     width: 100%;
     height: 100vh;
-    background-image: linear-gradient(to bottom right, rgb(0, 7, 75), rgb(0, 15, 43));
+    background-image: linear-gradient(to bottom right, rgb(1, 23, 48), rgb(0, 15, 43));
     display: flex;
     justify-items: center;
     align-items: center;
